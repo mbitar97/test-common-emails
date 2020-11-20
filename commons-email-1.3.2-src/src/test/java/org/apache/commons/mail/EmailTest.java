@@ -2,6 +2,8 @@ package org.apache.commons.mail;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -165,6 +167,15 @@ public class EmailTest {
 		email.setSentDate(a_date);
 		assertNotNull(email.getSentDate());
 		assertEquals(a_date, email.getSentDate());
+	}
+	
+	@Test
+	public void testGetSocketConnectonTimeout() throws Exception
+	{
+		int timeout = 2;
+		email.setSocketConnectionTimeout(timeout);
+		assertNotNull(email.getSocketConnectionTimeout());
+		assertEquals(timeout, email.getSocketConnectionTimeout());
 	}
 	
 }
