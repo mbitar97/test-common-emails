@@ -67,4 +67,6 @@ public class EmailTest {
 		assertNotNull(email.getReplyToAddresses());
 	}
 	
+	
+	
 }
