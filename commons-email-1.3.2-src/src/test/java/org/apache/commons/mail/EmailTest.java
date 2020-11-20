@@ -129,5 +129,19 @@ public class EmailTest {
 		email.buildMimeMessage();
 	}	
 	
+	@Test
+	public void testGetHostName() throws Exception
+	{
+		String hostname = "hostname";
+		email.setHostName(hostname);
+		assertEquals(hostname, email.getHostName());
+	}
+	@Test (expected = EmailException.class)
+	public void testGetHostNameNull() throws EmailException
+	{
+		String hostname = null;
+		email.setHostName(hostname);
+		assertNotNull(email.getHostName());
+	}
 	
 }
