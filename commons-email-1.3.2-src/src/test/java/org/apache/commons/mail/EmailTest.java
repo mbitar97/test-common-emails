@@ -40,4 +40,22 @@ public class EmailTest {
 		assertEquals(1, email.getCcAddresses().size());	
 	}
 	
+	@Test
+	public void testAddHeader() throws Exception
+	{
+		String Headername = "headername";
+		String Headervalue = "headervaluetxt";
+		email.addHeader(Headername, Headervalue);
+	}	
+	@Test (expected = IllegalArgumentException.class)
+	public void testAddHeaderNullVal() throws Exception{
+		String Headername = "headername";
+		email.addHeader(Headername, null);
+	}
+	@Test (expected = IllegalArgumentException.class)
+	public void testAddHeaderNullName() throws Exception{
+		String Headervalue = "headervaluetxt";
+		email.addHeader(null, Headervalue);
+	}
+	
 }
