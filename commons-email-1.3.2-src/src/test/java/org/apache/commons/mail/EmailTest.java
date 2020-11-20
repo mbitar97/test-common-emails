@@ -58,4 +58,13 @@ public class EmailTest {
 		email.addHeader(null, Headervalue);
 	}
 	
+	@Test
+	public void testAddReplyTo() throws Exception
+	{
+		String an_email = "email@gmail.com";
+		String name = "name";
+		email.addReplyTo(an_email, name);
+		assertNotNull(email.getReplyToAddresses());
+	}
+	
 }
