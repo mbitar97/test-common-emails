@@ -32,4 +32,12 @@ public class EmailTest {
 		assertEquals(5, email.getBccAddresses().size());	
 	}
 	
+	@Test
+	public void testAddCc() throws Exception
+	{
+		email.addCc("email@gmail.com");
+		assertNotNull(email.getCcAddresses());
+		assertEquals(1, email.getCcAddresses().size());	
+	}
+	
 }
