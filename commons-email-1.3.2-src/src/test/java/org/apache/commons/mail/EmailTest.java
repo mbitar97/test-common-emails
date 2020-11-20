@@ -157,4 +157,14 @@ public class EmailTest {
 		assertNotNull(email.getBccAddresses());
 		assertNotNull(email.getMailSession());
 	}
+	
+	@Test
+	public void testGetSentDate() throws Exception
+	{
+		Date a_date = new Date(1);
+		email.setSentDate(a_date);
+		assertNotNull(email.getSentDate());
+		assertEquals(a_date, email.getSentDate());
+	}
+	
 }
