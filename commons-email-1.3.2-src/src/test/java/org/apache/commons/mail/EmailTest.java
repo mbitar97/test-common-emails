@@ -67,6 +67,67 @@ public class EmailTest {
 		assertNotNull(email.getReplyToAddresses());
 	}
 	
+	@Test 
+	public void testBuildMimeMessage() throws Exception
+	{
+		String hostname = "hostname";
+		String subj = "Message Subject";
+		String content = "Content Type";
+		String from = "email@gmail.com";
+		String [] toEmails = emailList;
+		String replyto = "another.email@gmail.com";
+		String [] BccEmailList = emailList;
+		String Headername = "headername";
+		String Headervalue = "headervaluetxt";
+		email.setHostName(hostname);
+		email.setSubject(subj);
+		email.updateContentType(content);		
+		email.setFrom(from);	
+		email.addTo(toEmails);	
+		email.addReplyTo(replyto);
+		email.addBcc(BccEmailList);
+		email.addHeader(Headername, Headervalue);	
+		email.setCharset("ASCII");	
+		email.buildMimeMessage();
+	}	
+	@Test  (expected = IllegalStateException.class)
+	public void testBuildMimeMessageTwice() throws Exception
+	{
+		String hostname = "hostName";
+		email.setHostName(hostname);
+		email.setFrom("email@gmail.com");
+		email.addReplyTo("another.email@gmail.com");
+		email.setTo(email.getReplyToAddresses());
+		email.buildMimeMessage();
+		email.buildMimeMessage();
+	}	
+	@Test (expected = EmailException.class)
+	public void testBuildMimeMessageNullFrom() throws Exception
+	{
+		String host = "hostName";
+		email.setHostName(host);
+		email.addReplyTo("another.email@gmail.com");
+		email.setTo(email.getReplyToAddresses());
+		email.buildMimeMessage();
+	}
+	@Test (expected = EmailException.class)
+	public void testBuildMimeMessageNullHostname() throws Exception
+	{
+		//String host = "hostName";
+		//email.setHostName(host);
+		email.setFrom("email@gmail.com");
+		email.addReplyTo("another.email@gmail.com");
+		email.setTo(email.getReplyToAddresses());
+		email.buildMimeMessage();
+	}	
+	@Test (expected = EmailException.class)
+	public void testBuildMimeMessageNullTo() throws Exception{
+		String hostname = "HostName";
+		email.setHostName(hostname);
+		email.setFrom("email@gmail.com");
+		email.addReplyTo("another.email@gmail.com");
+		email.buildMimeMessage();
+	}	
 	
 	
 }
